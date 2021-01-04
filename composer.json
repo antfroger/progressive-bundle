@@ -1,0 +1,23 @@
+{
+    "name": "antfroger/progressive-bundle",
+    "description": "The bundle to load Progressive, the library to progressively, quickly and simply enables new features",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "homepage": "https://github.com/antfroger/progressive-bundle",
+    "authors": [
+        {
+            "name": "Antoine Froger",
+            "email": "antfroger@gmail.com"
+        }
+    ],
+    "require": {
+        "antfroger/progressive": "^1.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.17"
+    },
+    "autoload": {
+        "psr-4": { "Af\\ProgressiveBundle\\": "" }
+    },
+    "minimum-stability": "stable"
+}
