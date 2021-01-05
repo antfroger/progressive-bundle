@@ -5,12 +5,24 @@
         https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Progressive\Progressive" alias="af.progressive"/>
-        <service id="af.progressive" class="Progressive\Progressive">
+        <service id="Progressive\Progressive">
             <argument type="collection" /><!-- configuration will be dynamically filled in -->
-            <argument type="service" id="af.progressive.context"/>
+            <argument type="service" id="Progressive\Context"/>
+            <argument type="service" id="Progressive\Rule\Store"/>
         </service>
 
-        <service id="af.progressive.context" class="Progressive\Context" />
+        <service id="Progressive\Context"/>
+        <service id="Progressive\Rule\Store"/>
+
+        <service id="Af\ProgressiveBundle\Rule\Environments">
+            <argument>%kernel.environment%</argument>
+        </service>
+        <service id="Af\ProgressiveBundle\Rule\Roles">
+            <argument type="service" id="security.helper"/>
+        </service>
+
+        <instanceof id="Progressive\Rule\RuleInterface" autowire="true">
+            <tag name="af_progressive.rule"/>
+        </instanceof>
     </services>
 </container>

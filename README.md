@@ -1,6 +1,8 @@
 # Progressive Bundle
 
-**Symfony integration for the feature-flag library [Progressive](https://github.com/antfroger/progressive)**
+Symfony integration for the feature-flag library [Progressive](https://github.com/antfroger/progressive)
+
+[![Build Status](https://github.com/antfroger/progressive-bundle/workflows/CI/badge.svg)](https://github.com/antfroger/progressive-bundle)
 
 ## Installation
 
@@ -55,3 +57,19 @@ features:
       env: ['dev', 'preprod']
       roles: ['ROLE_ADMIN', 'ROLE_DEV']
 ```
+
+Look at the [Progressive documentation](https://github.com/antfroger/progressive#usage) to know more about the feature's configuration.
+
+## Usage
+
+You can use Progressive in a controller:
+
+```php
+  public function info(Progressive $progressive): Response
+  {
+      if ($progressive->isEnabled('call-center')) {
+          // Do what you want when the feature `call-center` is enabled
+      }
+  }
+```
+
