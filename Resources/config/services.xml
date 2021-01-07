@@ -24,5 +24,10 @@
         <instanceof id="Progressive\Rule\RuleInterface" autowire="true">
             <tag name="af_progressive.rule"/>
         </instanceof>
+
+        <service id="Af\ProgressiveBundle\Twig\ProgressiveExtension">
+            <argument type="service" id="Progressive\Progressive"/>
+            <tag name="twig.extension"/>
+        </service>
     </services>
 </container>

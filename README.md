@@ -73,3 +73,12 @@ You can use Progressive in a controller:
   }
 ```
 
+Or in a template:
+
+```twig
+{% if is_enabled('call-center') %}
+    {# Do what you want when the feature `call-center` is enabled #}
+{% endif %}
+```
+
+## Create your own rules
