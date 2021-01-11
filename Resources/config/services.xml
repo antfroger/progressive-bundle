@@ -16,14 +16,12 @@
 
         <service id="Af\ProgressiveBundle\Rule\Environments">
             <argument>%kernel.environment%</argument>
+            <tag name="af_progressive.rule" />
         </service>
         <service id="Af\ProgressiveBundle\Rule\Roles">
             <argument type="service" id="security.helper"/>
+            <tag name="af_progressive.rule" />
         </service>
-
-        <instanceof id="Progressive\Rule\RuleInterface" autowire="true">
-            <tag name="af_progressive.rule"/>
-        </instanceof>
 
         <service id="Af\ProgressiveBundle\Twig\ProgressiveExtension">
             <argument type="service" id="Progressive\Progressive"/>

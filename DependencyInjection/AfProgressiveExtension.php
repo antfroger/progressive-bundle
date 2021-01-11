@@ -4,6 +4,7 @@ namespace Af\ProgressiveBundle\DependencyInjection;
 
 use Progressive\Context;
 use Progressive\Progressive;
+use Progressive\Rule\RuleInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -33,5 +34,8 @@ class AfProgressiveExtension extends Extension
         $definition = $container->getDefinition(Progressive::class);
         $featuresConfig = Yaml::parseFile($config['config']);
         $definition->replaceArgument(0, $featuresConfig);
+
+        // Automatically tags services implementing RuleInterface to be used as Rules
+        $container->registerForAutoconfiguration(RuleInterface::class)->addTag('af_progressive.rule');
     }
 }

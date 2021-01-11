@@ -82,3 +82,76 @@ Or in a template:
 ```
 
 ## Create your own rules
+
+I'm sure that soon you will want to create your own rules to progressively enable features dependning on your application logic.  
+That's where custom rules come into play! (More information about **custom rules** on the [Progressive doc](https://github.com/antfroger/progressive#custom))
+
+To create your own rules and use them in your `feature. yaml` file, you only need to create a class extending `Progressive\Rule\RuleInterface`.  
+That's it!  
+Symfony autowiring takes care of the rest.
+
+Let's say you want to display a chat in your contact page, but only in working hours (for instance between 9am and 7pm).
+
+1. First, create the rule:
+
+```php
+// src/Progressive/BetweenHours.php
+namespace App\Progressive;
+
+use Progressive\ParameterBagInterface;
+use Progressive\Rule\RuleInterface;
+
+class BetweenHours implements RuleInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function getName(): string
+    {
+        return 'between-hours';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function decide(ParameterBagInterface $bag, array $hours = []): bool
+    {
+        if (!isset($hours['start']) || !is_int($hours['start']) || !isset($hours['end']) || !is_int($hours['end'])) {
+            return false;
+        }
+
+        $now = new \DateTime();
+        $hour = $now->format('H');
+        return $hours['start'] <= $hour && $hour < $hours['end'];
+    }
+}
+```
+
+2. Now, you can use this new rule, in the `feature. yaml` file
+
+```yaml
+features:
+  customer-service-chat:
+    between-hours: # same as `BetweenHours::getName()`
+      start: 9
+      end: 19
+
+```
+
+3. You now have a feature using this new rule.  
+Let's use it in a controller or in a template:
+
+```php
+public function customerService(Progressive $progressive): Response
+  {
+      if ($progressive->isEnabled('customer-service-chat')) {
+        // ...
+      }
+  }
+```
+
+```twig
+{% if is_enabled('customer-service-chat') %}
+    {# Display the chat #}
+{% endif %}
+```
