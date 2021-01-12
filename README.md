@@ -81,7 +81,61 @@ Or in a template:
 {% endif %}
 ```
 
-## Create your own rules
+## Rules
+
+### Built-in rules
+
+Progressive comes with several built-in rules:
+
+* `enabled: true|false`  
+[`enabled`](https://github.com/antfroger/progressive#enabled-truefalse) enables (or disables) the feature for everyone, everywhere, all the time.
+
+### Symfony specific rules
+
+This bundle provides Symfony specific rules:
+
+* [`environments: []`](#environments-)
+* [`roles: []`](#roles-)
+* [`users: []`](#users-)
+
+#### `environments: []`
+
+`environments` enables (or disables) the feature depending on the app environment.  
+The value is meant to be an array of environments' names.
+
+```yaml
+features:
+  send-slack-message:
+    environment: ['dev', 'preprod']
+```
+
+#### `roles: []`
+
+`roles` only enables (or disables) the feature for specific roles.  
+The value is meant to be an array of roles' names.
+
+*This example configuration enables the feature `new-amazing-homepage` only for admins and dev.*
+
+```yaml
+features:
+  new-amazing-homepage:
+    roles: ['ROLE_ADMIN', 'ROLE_DEV']
+```
+
+#### `users: []`
+
+`users` is more fine-grained than `roles` because, it allows you to enable a feature at a user level.  
+The value is meant to be an array of usernames.
+
+*This example configuration enables the feature `secret-feature` only for the users antoine and ted.*
+
+```yaml
+features:
+  secret-feature:
+    users: ['antoine', 'ted']
+```
+
+### Create your own rules
 
 I'm sure that soon you will want to create your own rules to progressively enable features dependning on your application logic.  
 That's where custom rules come into play! (More information about **custom rules** on the [Progressive doc](https://github.com/antfroger/progressive#custom))
@@ -155,3 +209,31 @@ public function customerService(Progressive $progressive): Response
     {# Display the chat #}
 {% endif %}
 ```
+
+### Strategies
+
+Thanks to strategies, you can combine the power of rules.  
+Let's say you want to enable your new feature `one-click-payment`:
+
+* for everyone in dev and preprod...
+* but only for admins in prod...
+* and two beta-testers (antoine and laurent).
+
+This configuration will do the job:
+
+```yaml
+features:
+  one-click-payment:
+    partial:
+      environments: ['dev', 'preprod']
+      roles: ['ROLE_ADMIN']
+      users: ['antoine', 'laurent']
+```
+
+Progressive comes with two built-in rules:  
+(but as they simply are nested rules, you can create your own [strategies](https://github.com/antfroger/progressive/blob/main/README.md#strategies)!)
+
+* `unanimous: []`  
+[`unanimous`](https://github.com/antfroger/progressive#unanimous-) is a strategy (a combinaison of several rules). It enables the feature if all the conditions are met / if all the rules are true.
+* `partial: []`  
+[`patial`](https://github.com/antfroger/progressive#partial-) is also a strategy. It enables the feature if only one of the conditions is met / if at least one of the rules is true.
