@@ -25,5 +25,8 @@
     "autoload": {
         "psr-4": { "Af\\ProgressiveBundle\\": "" }
     },
+    "autoload-dev": {
+        "psr-4": { "Af\\ProgressiveBundle\\Tests\\": "tests/" }
+    },
     "minimum-stability": "stable"
 }
