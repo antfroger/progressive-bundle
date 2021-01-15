@@ -9,5 +9,9 @@
             <argument type="service" id="Progressive\Progressive"/>
             <tag name="console.command"/>
         </service>
+        <service id="Af\ProgressiveBundle\Command\ListRulesCommand">
+            <argument type="service" id="Progressive\Rule\Store"/>
+            <tag name="console.command"/>
+        </service>
     </services>
 </container>

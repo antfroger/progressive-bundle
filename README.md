@@ -264,3 +264,18 @@ If you specify the name of the feature, its configuration will be displayed:
       env: dev, preprod
       roles: ROLE_DEV
 ```
+
+### `progressive:rules`
+
+The command `progressive:rules` lists the rules provided by Progressive:
+
+```bash
+  $ php bin/console progressive:rules
+  Available rules:
+    enabled
+    env
+    partial
+    roles
+    unanimous
+    users
+```

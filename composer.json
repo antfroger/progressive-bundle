@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "antfroger/progressive": "^1.0",
+        "antfroger/progressive": "^1.2",
         "symfony/config": "^5.2",
         "symfony/console": "^5.2",
         "symfony/dependency-injection": "^5.2",
