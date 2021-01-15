@@ -19,7 +19,9 @@ class AfProgressiveExtension extends Extension
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
         );
-        $loader->load('services.xml');
+        $loader->load('progressive.xml');
+        $loader->load('twig.xml');
+        $loader->load('console.xml');
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);

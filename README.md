@@ -237,3 +237,30 @@ Progressive comes with two built-in rules:
 [`unanimous`](https://github.com/antfroger/progressive#unanimous-) is a strategy (a combinaison of several rules). It enables the feature if all the conditions are met / if all the rules are true.
 * `partial: []`  
 [`patial`](https://github.com/antfroger/progressive#partial-) is also a strategy. It enables the feature if only one of the conditions is met / if at least one of the rules is true.
+
+## Commands
+
+### `progressive:features`
+
+The command `progressive:features` lists all the features configured in Progressive:
+
+```bash
+  $ php bin/console progressive:features
+  Available features:
+    dark-theme
+    homepage-v2
+    customer-service-chat
+```
+
+If you specify the name of the feature, its configuration will be displayed:
+
+```bash
+  $ php bin/console progressive:features dark-theme
+  Name:
+    dark-theme
+
+  Config:
+    unanimous:
+      env: dev, preprod
+      roles: ROLE_DEV
+```
