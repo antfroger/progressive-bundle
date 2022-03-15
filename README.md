@@ -3,6 +3,7 @@
 Symfony integration for the feature-flag library [Progressive](https://github.com/antfroger/progressive)
 
 [![Build Status](https://github.com/antfroger/progressive-bundle/workflows/CI/badge.svg)](https://github.com/antfroger/progressive-bundle)
+[![Latest stable version](https://poser.pugx.org/antfroger/progressive-bundle/v)](https://packagist.org/packages/antfroger/progressive-bundle "Latest stable version")
 
 ## Installation
 
