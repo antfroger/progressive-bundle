@@ -7,8 +7,7 @@ use Progressive\Rule\RuleInterface;
 
 class Environments implements RuleInterface
 {
-    /** @var string */
-    private $env;
+    private string $env;
 
     public function __construct($env)
     {

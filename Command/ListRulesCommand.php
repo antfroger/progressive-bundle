@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ListRulesCommand extends Command
 {
-    private $store;
+    private StoreInterface $store;
     protected static $defaultName = 'progressive:rules';
 
     public function __construct(StoreInterface $store)

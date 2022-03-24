@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ListFeaturesCommand extends Command
 {
-    private $progressive;
+    private Progressive $progressive;
     protected static $defaultName = 'progressive:features';
 
     public function __construct(Progressive $progressive)

@@ -8,8 +8,7 @@ use Symfony\Component\Security\Core\Security;
 
 class Users implements RuleInterface
 {
-    /** @var Security */
-    private $security;
+    private Security $security;
 
     public function __construct(Security $security)
     {

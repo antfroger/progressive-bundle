@@ -8,8 +8,7 @@ use Twig\TwigFunction;
 
 final class ProgressiveExtension extends AbstractExtension
 {
-    /** @var Progressive */
-    private $progressive;
+    private Progressive $progressive;
 
     public function __construct(Progressive $progressive)
     {
