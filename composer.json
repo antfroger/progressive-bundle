@@ -17,6 +17,7 @@
         "symfony/dependency-injection": "^5.2",
         "symfony/http-kernel": "^5.2",
         "symfony/security-core": "^5.2",
+        "symfony/var-dumper": "^5.2",
         "symfony/yaml": "^5.2"
     },
     "require-dev": {

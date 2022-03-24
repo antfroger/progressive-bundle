@@ -280,3 +280,16 @@ The command `progressive:rules` lists the rules provided by Progressive:
     unanimous
     users
 ```
+
+## Web toolbar & profiler
+
+In order to have an quick and easy access to the available features of your application - and see which ones are enabled for you -
+Symfony's web toolbar includes a tab with your defined features.
+
+![web toolbar](./_images/web-toolbar.png)
+
+Symfony's profiler also includes a tab listing all the features of the application and their respective configuration.
+
+![profiler](./_images/profiler.png)
+
+...

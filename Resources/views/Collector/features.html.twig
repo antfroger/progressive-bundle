@@ -1,0 +1,56 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+	{% set icon %}
+	{{ include('@AfProgressive/Icon/features.svg') }}
+	<span class="sf-toolbar-value">{{ collector.features|length }}</span>
+	{% endset %}
+
+	{% set text %}{% apply spaceless %}
+	{% for name in collector.features|sort %}
+        {% set enabled = collector.enabled(name) %}
+		<div class="sf-toolbar-info-piece">
+			<b>{{ name }}</b>
+			<span class="sf-toolbar-status sf-toolbar-status-{{ enabled ? 'green' : 'yellow' }}">
+				{{ enabled ? 'Yes' : 'No' }}
+			</span>
+		</div>
+	{% endfor %}
+	{% endapply %}{% endset %}
+
+	{{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': collector.features|length > 0 }) }}
+{% endblock %}
+
+{% block menu %}
+	<span class="label">
+		<span class="icon">{{ include('@AfProgressive/Icon/features.svg') }}</span>
+		<strong>Features</strong>
+	</span>
+{% endblock %}
+
+{% block panel %}
+	<h2>Features
+		<small>({{ collector.features|length }})</small>
+	</h2>
+	<table>
+		<thead>
+			<tr>
+				<th class="key">Name</th>
+				<th>Enabled</th>
+				<th>Config</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for name in collector.features|sort %}
+                {% set enabled = collector.enabled(name) %}
+				<tr>
+					<th scope="row" class="font-normal">{{ name }}</th>
+					<th class="font-normal">
+						<span class="label status-{{ enabled ? 'success' : 'warning' }}">{{ enabled ? 'Yes' : 'No' }}</span>
+					</th>
+					<td class="sf-dump-str">{{ profiler_dump(collector.config(name)) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

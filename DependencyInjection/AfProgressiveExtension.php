@@ -20,8 +20,9 @@ class AfProgressiveExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('progressive.xml');
-        $loader->load('twig.xml');
         $loader->load('console.xml');
+        $loader->load('data_collector.xml');
+        $loader->load('twig.xml');
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
