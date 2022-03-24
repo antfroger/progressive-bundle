@@ -10,7 +10,7 @@ Symfony integration for the feature-flag library [Progressive](https://github.co
 Install this bundle using Composer:
 
 ```console
-$ composer require antfroger/progressive-bundle
+composer require antfroger/progressive-bundle
 ```
 
 ## Configuration
@@ -95,19 +95,19 @@ Progressive comes with several built-in rules:
 
 This bundle provides Symfony specific rules:
 
-* [`environments: []`](#environments-)
+* [`env: []`](#environments-)
 * [`roles: []`](#roles-)
 * [`users: []`](#users-)
 
-#### `environments: []`
+#### `env: []`
 
-`environments` enables (or disables) the feature depending on the app environment.  
-The value is meant to be an array of environments' names.
+`env` enables (or disables) the feature depending on the app environment.  
+The value is meant to be an array of environment' names.
 
 ```yaml
 features:
   send-slack-message:
-    environment: ['dev', 'preprod']
+    env: ['dev', 'preprod']
 ```
 
 #### `roles: []`
@@ -226,7 +226,7 @@ This configuration will do the job:
 features:
   one-click-payment:
     partial:
-      environments: ['dev', 'preprod']
+      env: ['dev', 'preprod']
       roles: ['ROLE_ADMIN']
       users: ['antoine', 'laurent']
 ```
