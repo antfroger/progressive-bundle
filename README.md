@@ -35,7 +35,15 @@ Create the configuration file `config/packages/af_progressive.yaml`.
 
 The only required key is `config`.
 The key needs the path of the yaml file where you will configure the features of your application.  
-An example configuration looks like this:
+The minimal configuration looks like this:
+
+```yaml
+# config/packages/af_progressive.yaml
+af_progressive:
+  config: '%kernel.project_dir%/config/features.yaml'
+```
+
+But, you can also define under the `context` key, variables that will be stored in the [Contex object](https://github.com/antfroger/progressive#context-object).
 
 ```yaml
 # config/packages/af_progressive.yaml
@@ -45,25 +53,44 @@ af_progressive:
     env: '%kernel.environment%'
 ```
 
+Then, you need to create the file that will contain your features.  
+It must contain at least the `features` key:
+
+```yaml
+# config/features.yaml
+features: []
+```
+
+But quickly, you can start adding many more features:  
+*(every time you change this file, you may need to clear the cache og your application: `php bin/console cache:clear`)*
+
 ```yaml
 # config/features.yaml
 features:
   dark-theme: true
   call-center:
     between-hours:
-      start: 8
-      end: 20
+        start: 9
+        end: 19
   homepage-v2:
     partial:
       env: ['dev', 'preprod']
-      roles: ['ROLE_ADMIN', 'ROLE_DEV']
+      roles: ['ROLE_ADMIN']
+  slack-message:
+    env: ['dev', 'preprod']
+  secret-feature:
+    users: ['antoine']
+  new-design:
+    unanimous:
+      env: ['dev', 'preprod']
+      roles: ['ROLE_DEV', 'ROLE_ADMIN']
 ```
 
-Look at the [Progressive documentation](https://github.com/antfroger/progressive#usage) to know more about the feature's configuration.
+Look at [Progressive documentation](https://github.com/antfroger/progressive#usage) to know more about the features' configuration.
 
 ## Usage
 
-You can use Progressive in a controller:
+You can use Progressive in a controller using [Symfony's autowiring](https://symfony.com/doc/current/service_container/autowiring.html):
 
 ```php
   public function info(Progressive $progressive): Response
@@ -291,5 +318,3 @@ Symfony's web toolbar includes a tab with your defined features.
 Symfony's profiler also includes a tab listing all the features of the application and their respective configuration.
 
 ![profiler](./_images/profiler.png)
-
-...
