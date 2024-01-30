@@ -15,9 +15,6 @@ class Roles implements RuleInterface
         $this->security = $security;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function decide(ParameterBagInterface $bag, array $roles = []): bool
     {
         if (null === $user = $this->security->getUser()) {
@@ -34,9 +31,6 @@ class Roles implements RuleInterface
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'roles';
