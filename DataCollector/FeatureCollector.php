@@ -20,9 +20,6 @@ class FeatureCollector extends DataCollector
         $this->cloner = $cloner;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function collect(Request $request, Response $response, \Throwable $exception = null)
     {
         foreach ($this->progressive->all() as $name => $config) {
@@ -38,9 +35,6 @@ class FeatureCollector extends DataCollector
         $this->data = [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'progressive.features';

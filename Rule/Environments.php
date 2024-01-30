@@ -14,17 +14,11 @@ class Environments implements RuleInterface
         $this->env = $env;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function decide(ParameterBagInterface $bag, array $envs = []): bool
     {
         return in_array($this->env, $envs);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'env';
